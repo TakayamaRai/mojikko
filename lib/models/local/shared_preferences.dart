@@ -1,5 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+class SPKeys {
+  static const String childAnswer = 'childAnswer';
+  static const String generalAnswer = 'generalAnswer';
+}
+
 class SharedPreferencesUtil {
   static late SharedPreferences prefs;
 
@@ -11,12 +16,12 @@ class SharedPreferencesUtil {
     }
   }
 
-  static void setString(String key, String value) {
-    prefs.setString(key, value);
+  static void setInt(String key, int value) {
+    prefs.setInt(key, value);
   }
 
-  static String getString(String key) {
-    return prefs.getString(key) ?? '';
+  static int getInt(String key) {
+    return prefs.getInt(key) ?? 0;
   }
 
   static void setBool(String key, bool value) {
@@ -25,13 +30,5 @@ class SharedPreferencesUtil {
 
   static bool getBool(String key) {
     return prefs.getBool(key) ?? false;
-  }
-
-  static void setDouble(String key, double value) {
-    prefs.setDouble(key, value);
-  }
-
-  static double? getDouble(String key) {
-    return prefs.getDouble(key);
   }
 }
