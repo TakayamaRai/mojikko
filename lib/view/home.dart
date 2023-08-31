@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mojikko/data/color.dart';
 import 'package:mojikko/data/dictionary.dart';
 import 'package:mojikko/models/local/shared_preferences.dart';
-import 'package:mojikko/models/model/playData.dart';
+import 'package:mojikko/models/model/play_data.dart';
 import 'package:mojikko/view/component/button.dart';
 import 'package:mojikko/view/component/scroll_view.dart';
 import 'package:mojikko/view/component/text.dart';
@@ -22,7 +22,7 @@ class Home extends HookConsumerWidget {
         children: [
           MyText.p12bold(text: "子供向け"),
           ColorButton(
-              backgroundColor: MyColors.primary,
+              backgroundColor: MyColors.cardBackground,
               onPressed: _onPressChild(context,answerChildIndex),
               child: MyText.p12normal(text: "${answerChildIndex + 1}/50")),
           const SizedBox(height: 30,),

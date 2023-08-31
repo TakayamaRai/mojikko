@@ -56,27 +56,27 @@ class MyTextField extends StatelessWidget {
             suffixIcon: suffixIcon,
             contentPadding: contentPadding,
             filled: !enabled,
-            fillColor: MyColors.pageBreak,
+            fillColor: MyColors.subText,
             hintText: hintText,
             hintStyle: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w300,
-              color: MyColors.hintText,
+              color: MyColors.mainText,
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: errorText != null
-                  ? const BorderSide(color: MyColors.error)
-                  : const BorderSide(color: MyColors.textFieldBorder),
+                  ? const BorderSide(color: MyColors.highlight)
+                  : const BorderSide(color: MyColors.subText),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: errorText != null
-                  ? const BorderSide(color: MyColors.error)
-                  : const BorderSide(color: MyColors.textFieldBorder),
+                  ? const BorderSide(color: MyColors.highlight)
+                  : const BorderSide(color: MyColors.subText),
             ),
             disabledBorder: OutlineInputBorder(
               borderSide: errorText != null
-                  ? const BorderSide(color: MyColors.error)
-                  : const BorderSide(color: MyColors.textFieldBorder),
+                  ? const BorderSide(color: MyColors.highlight)
+                  : const BorderSide(color: MyColors.subText),
             ),
           ),
           onChanged: onChanged,
@@ -87,7 +87,7 @@ class MyTextField extends StatelessWidget {
             errorText!,
             style: const TextStyle(
               fontSize: 14,
-              color: MyColors.error,
+              color: MyColors.highlight,
               fontWeight: FontWeight.w600,
             ),
           ),

@@ -58,7 +58,7 @@ class MyScrollView extends StatelessWidget {
         Container(
           height: MediaQuery.of(context).padding.top,
           width: MediaQuery.of(context).size.width,
-          color:MyColors.primary,
+          color:MyColors.cardBackground,
         ),
         Container(
           height: appBarHeight,

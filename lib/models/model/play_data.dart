@@ -1,8 +1,7 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'playData.freezed.dart';
-part 'playData.g.dart';
+part 'play_data.freezed.dart';
 
 @freezed
 class PlayData with _$PlayData {
@@ -13,5 +12,4 @@ class PlayData with _$PlayData {
     @Default([]) List<String> usedWords,
   }) = _PlayData;
 
-  factory PlayData.fromJson(Map<String, dynamic> json) => _$PlayDataFromJson(json);
 }

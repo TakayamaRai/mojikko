@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'playData.dart';
+part of 'play_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,27 +14,22 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PlayData _$PlayDataFromJson(Map<String, dynamic> json) {
-  return _PlayData.fromJson(json);
-}
-
 /// @nodoc
-mixin _$PlayData {
+mixin _$PlayState {
   List<String> get questions => throw _privateConstructorUsedError;
   String get answers => throw _privateConstructorUsedError;
   String get answersKanji => throw _privateConstructorUsedError;
   List<String> get usedWords => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlayDataCopyWith<PlayData> get copyWith =>
+  $PlayStateCopyWith<PlayState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlayDataCopyWith<$Res> {
-  factory $PlayDataCopyWith(PlayData value, $Res Function(PlayData) then) =
-      _$PlayDataCopyWithImpl<$Res, PlayData>;
+abstract class $PlayStateCopyWith<$Res> {
+  factory $PlayStateCopyWith(PlayState value, $Res Function(PlayState) then) =
+      _$PlayStateCopyWithImpl<$Res, PlayState>;
   @useResult
   $Res call(
       {List<String> questions,
@@ -44,9 +39,9 @@ abstract class $PlayDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlayDataCopyWithImpl<$Res, $Val extends PlayData>
-    implements $PlayDataCopyWith<$Res> {
-  _$PlayDataCopyWithImpl(this._value, this._then);
+class _$PlayStateCopyWithImpl<$Res, $Val extends PlayState>
+    implements $PlayStateCopyWith<$Res> {
+  _$PlayStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,10 +78,10 @@ class _$PlayDataCopyWithImpl<$Res, $Val extends PlayData>
 }
 
 /// @nodoc
-abstract class _$$_PlayDataCopyWith<$Res> implements $PlayDataCopyWith<$Res> {
-  factory _$$_PlayDataCopyWith(
-          _$_PlayData value, $Res Function(_$_PlayData) then) =
-      __$$_PlayDataCopyWithImpl<$Res>;
+abstract class _$$_PlayStateCopyWith<$Res> implements $PlayStateCopyWith<$Res> {
+  factory _$$_PlayStateCopyWith(
+          _$_PlayState value, $Res Function(_$_PlayState) then) =
+      __$$_PlayStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -97,11 +92,11 @@ abstract class _$$_PlayDataCopyWith<$Res> implements $PlayDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PlayDataCopyWithImpl<$Res>
-    extends _$PlayDataCopyWithImpl<$Res, _$_PlayData>
-    implements _$$_PlayDataCopyWith<$Res> {
-  __$$_PlayDataCopyWithImpl(
-      _$_PlayData _value, $Res Function(_$_PlayData) _then)
+class __$$_PlayStateCopyWithImpl<$Res>
+    extends _$PlayStateCopyWithImpl<$Res, _$_PlayState>
+    implements _$$_PlayStateCopyWith<$Res> {
+  __$$_PlayStateCopyWithImpl(
+      _$_PlayState _value, $Res Function(_$_PlayState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +107,7 @@ class __$$_PlayDataCopyWithImpl<$Res>
     Object? answersKanji = null,
     Object? usedWords = null,
   }) {
-    return _then(_$_PlayData(
+    return _then(_$_PlayState(
       questions: null == questions
           ? _value._questions
           : questions // ignore: cast_nullable_to_non_nullable
@@ -134,18 +129,15 @@ class __$$_PlayDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_PlayData implements _PlayData {
-  const _$_PlayData(
+
+class _$_PlayState implements _PlayState {
+  const _$_PlayState(
       {final List<String> questions = const [],
       required this.answers,
       required this.answersKanji,
       final List<String> usedWords = const []})
       : _questions = questions,
         _usedWords = usedWords;
-
-  factory _$_PlayData.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayDataFromJson(json);
 
   final List<String> _questions;
   @override
@@ -171,14 +163,14 @@ class _$_PlayData implements _PlayData {
 
   @override
   String toString() {
-    return 'PlayData(questions: $questions, answers: $answers, answersKanji: $answersKanji, usedWords: $usedWords)';
+    return 'PlayState(questions: $questions, answers: $answers, answersKanji: $answersKanji, usedWords: $usedWords)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlayData &&
+            other is _$_PlayState &&
             const DeepCollectionEquality()
                 .equals(other._questions, _questions) &&
             (identical(other.answers, answers) || other.answers == answers) &&
@@ -188,7 +180,6 @@ class _$_PlayData implements _PlayData {
                 .equals(other._usedWords, _usedWords));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -200,25 +191,16 @@ class _$_PlayData implements _PlayData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlayDataCopyWith<_$_PlayData> get copyWith =>
-      __$$_PlayDataCopyWithImpl<_$_PlayData>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_PlayDataToJson(
-      this,
-    );
-  }
+  _$$_PlayStateCopyWith<_$_PlayState> get copyWith =>
+      __$$_PlayStateCopyWithImpl<_$_PlayState>(this, _$identity);
 }
 
-abstract class _PlayData implements PlayData {
-  const factory _PlayData(
+abstract class _PlayState implements PlayState {
+  const factory _PlayState(
       {final List<String> questions,
       required final String answers,
       required final String answersKanji,
-      final List<String> usedWords}) = _$_PlayData;
-
-  factory _PlayData.fromJson(Map<String, dynamic> json) = _$_PlayData.fromJson;
+      final List<String> usedWords}) = _$_PlayState;
 
   @override
   List<String> get questions;
@@ -230,6 +212,6 @@ abstract class _PlayData implements PlayData {
   List<String> get usedWords;
   @override
   @JsonKey(ignore: true)
-  _$$_PlayDataCopyWith<_$_PlayData> get copyWith =>
+  _$$_PlayStateCopyWith<_$_PlayState> get copyWith =>
       throw _privateConstructorUsedError;
 }

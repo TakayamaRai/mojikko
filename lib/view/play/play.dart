@@ -1,7 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mojikko/models/model/playData.dart';
+import 'package:mojikko/models/model/play_data.dart';
 import 'package:mojikko/viewmodel/play_viewmodel.dart';
 
 class PlayPage extends ConsumerWidget {

@@ -29,12 +29,12 @@ class ColorButton extends StatelessWidget {
     return OutlinedButton(
     style: OutlinedButton.styleFrom(
     padding: padding ?? const EdgeInsets.symmetric(vertical: 17),
-    foregroundColor: foregroundColor ?? MyColors.white,
-    backgroundColor: backgroundColor ?? MyColors.primary,
+    foregroundColor: foregroundColor ?? MyColors.background,
+    backgroundColor: backgroundColor ?? MyColors.mainText,
     side: side ?? BorderSide.none,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
-    disabledBackgroundColor: MyColors.textFieldBorder,
-    disabledForegroundColor: MyColors.white,
+    disabledBackgroundColor: MyColors.subText,
+    disabledForegroundColor: MyColors.background,
     ),
     onPressed: onPressed,
     child: child,
@@ -63,9 +63,9 @@ class CustomOutLineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ColorButton(
       padding: padding,
-      foregroundColor: foregroundColor ?? MyColors.primary,
-      backgroundColor: backgroundColor ?? MyColors.white,
-      side: side ?? BorderSide(color: foregroundColor ?? MyColors.primary),
+      foregroundColor: foregroundColor ?? MyColors.highlight,
+      backgroundColor: backgroundColor ?? MyColors.background,
+      side: side ?? BorderSide(color: foregroundColor ?? MyColors.highlight),
       onPressed: onPressed,
       child: child,
     );

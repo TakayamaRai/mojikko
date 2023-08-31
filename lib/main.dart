@@ -33,8 +33,8 @@ class MyApp extends HookConsumerWidget {
         Locale('jp'),
       ],
       theme: ThemeData(
-          backgroundColor: Colors.white,
-          primaryColor: MyColors.primary,
+          backgroundColor: MyColors.background,
+          primaryColor: MyColors.cardBackground,
           fontFamily: 'Hiragino Kaku Gothic ProN'),
       home: const Home(),
     );
