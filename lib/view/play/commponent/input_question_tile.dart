@@ -33,6 +33,13 @@ class InputQuestionTile extends StatelessWidget {
                 topRight: Radius.circular(i==words.length-1 ? 50 :0),
                 bottomRight: Radius.circular(i==words.length-1 ? 50 :0),
               ),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(2, 2),
+                  color: Colors.grey.withOpacity(0.6),
+                  blurRadius: 5.0,
+                ),
+              ],
             ),
             child: Center(child: MyText.p12normal(text: words[i],color: MyColors.black)),
           )

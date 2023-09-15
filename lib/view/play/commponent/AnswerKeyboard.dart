@@ -18,10 +18,12 @@ class AnswerKeyboard extends StatelessWidget {
     ['は','ひ','ふ','へ','ほ',],
     ['な','に','ぬ','ね','の',],
     ['た','ち','つ','て','と',],
+    ['さ','し','す','せ','そ',],
     ['か','き','く','け','こ',],
     ['あ','い','う','え','お',],
   ];
   final keyboardsDakutenn = [
+    [' ',' ',' ',' ',' ',],
     [' ',' ',' ',' ',' ',],
     [' ',' ',' ',' ',' ',],
     ['ゃ','ゅ','ょ','っ','ー',],
@@ -54,12 +56,12 @@ class AnswerKeyboard extends StatelessWidget {
             GestureDetector(
                 onTap: () => onPressKeyboard(word),
                 child: WordTile(
-                    width: (MediaQuery.of(context).size.width-40)/9-3,
+                    width: (MediaQuery.of(context).size.width-90)/10,
                     wordsStatus: wordsStatus, word: word)));
-        columnTiles.add(const SizedBox(height: 3,));
+        columnTiles.add(const SizedBox(height: 5,));
       }
       rowTiles.add(Column(children: columnTiles,));
-      rowTiles.add(const SizedBox(width: 3,));
+      rowTiles.add(const SizedBox(width: 5,));
       columnTiles = [];
     }
     return Row(children: rowTiles,);

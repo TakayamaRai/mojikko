@@ -17,6 +17,16 @@ class WordTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final status = wordsStatus[word] ?? WordStatus.empty;
+    if(word ==' ') {
+      return Container(
+        height: width,
+        width: width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.black),
+        ),
+      );
+    }
     return Container(
       height: width,
       width: width,

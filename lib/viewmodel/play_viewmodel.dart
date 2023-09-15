@@ -73,6 +73,7 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
   }
 
   onPressKeyboard(String word) {
+    if(word == ' ') return;
     final newQuestions = List.of(state.questions);
     newQuestions[state.questionIndex].replaceAll(' ', '');
     if(newQuestions[state.questionIndex].length == 5){

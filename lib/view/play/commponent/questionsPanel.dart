@@ -38,8 +38,9 @@ class QuestionsPanel extends StatelessWidget {
     for (var word in words) {
       tiles.add(
           WordTile(
-              width: (MediaQuery.of(context).size.width -50)/10,
+              width: (MediaQuery.of(context).size.width -80)/10,
               wordsStatus: playData.wordsStatus,word: word));
+      tiles.add(const SizedBox(width: 3,));
     }
     return Row(children: tiles,);
   }
