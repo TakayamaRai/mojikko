@@ -18,17 +18,23 @@ class InputQuestionTile extends StatelessWidget {
   List<Widget> _wordTiles(String questions) {
     final List<Widget> widgets=[];
     final words = questions.padRight(5,' ').split('');
-    for (var word in words) {
-      if(word == ' ') word = '-';
+
+    for (int i=0; i<words.length; i++) {
+      if(words[i] == ' ') words[i] = '-';
       widgets.add(
           Container(
-            width: 50,
-            height: 50,
+            width: 45,
+            height: 45,
             decoration: BoxDecoration(
-              color: MyColors.background,
-              border: Border.all(color: MyColors.primary),
+              color: MyColors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(i==0 ? 50 :0),
+                bottomLeft: Radius.circular(i==0 ? 50 :0),
+                topRight: Radius.circular(i==words.length-1 ? 50 :0),
+                bottomRight: Radius.circular(i==words.length-1 ? 50 :0),
+              ),
             ),
-            child: Center(child: MyText.p12normal(text: word,color: MyColors.white)),
+            child: Center(child: MyText.p12normal(text: words[i],color: MyColors.black)),
           )
       );
     }
