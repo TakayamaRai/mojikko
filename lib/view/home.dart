@@ -4,6 +4,7 @@ import 'package:mojikko/data/color.dart';
 import 'package:mojikko/data/dictionary.dart';
 import 'package:mojikko/models/local/shared_preferences.dart';
 import 'package:mojikko/models/model/play_data.dart';
+import 'package:mojikko/models/model/play_answer.dart';
 import 'package:mojikko/view/component/button.dart';
 import 'package:mojikko/view/component/scroll_view.dart';
 import 'package:mojikko/view/component/text.dart';
@@ -22,14 +23,15 @@ class Home extends HookConsumerWidget {
         children: [
           MyText.p12bold(text: "子供向け"),
           ColorButton(
-              backgroundColor: MyColors.cardBackground,
-              onPressed: _onPressChild(context,answerChildIndex),
-              child: MyText.p12normal(text: "${answerChildIndex + 1}/50")),
+              backgroundColor: MyColors.primary,
+              onPressed: ()=> _onPressChild(context,answerChildIndex),
+              child: MyText.p12normal(text: "${answerChildIndex + 1}/50",color: MyColors.white)),
           const SizedBox(height: 30,),
           MyText.p12bold(text: "一般向け"),
           ColorButton(
-              onPressed: _onPressGeneral(context,answerGeneralIndex),
-              child: MyText.p12normal(text: "${answerGeneralIndex + 1}/50")
+              backgroundColor: MyColors.primary,
+              onPressed: ()=> _onPressGeneral(context,answerGeneralIndex),
+              child: MyText.p12normal(text: "${answerGeneralIndex + 1}/50",color: MyColors.white)
           ),
         ],
       ),
@@ -37,24 +39,21 @@ class Home extends HookConsumerWidget {
   }
 
   _onPressChild(BuildContext context, int i) {
-    final playData = PlayData(
-        questions: List.filled(10, ''),
-        answers: Dictionary.childAnswers.keys.elementAt(i),
+    final playAnswer = PlayAnswer(
+        answer: Dictionary.childAnswers.keys.elementAt(i),
         answersKanji: Dictionary.childAnswers.values.elementAt(i),
-        usedWords: []);
+        );
     Navigator.of(context).push(
       MaterialPageRoute<void>(builder: (_) =>
-          PlayPage(playData: playData)),);
+          PlayPage(playAnswer: playAnswer)),);
   }
 
   _onPressGeneral(BuildContext context, int i) {
-    final playData = PlayData(
-        questions: [],
-        answers: Dictionary.generalAnswers.keys.elementAt(i),
-        answersKanji: Dictionary.generalAnswers.values.elementAt(i),
-        usedWords: []);
+    final playAnswer = PlayAnswer(
+      answer: Dictionary.childAnswers.keys.elementAt(i),
+      answersKanji: Dictionary.childAnswers.values.elementAt(i),);
     Navigator.of(context).push(
         MaterialPageRoute<void>(builder: (_) =>
-            PlayPage(playData: playData)),);
+            PlayPage(playAnswer: playAnswer)),);
   }
 }

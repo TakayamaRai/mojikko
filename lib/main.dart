@@ -7,6 +7,7 @@ import 'models/local/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
     SharedPreferencesUtil.instance()
   ]);
@@ -33,8 +34,6 @@ class MyApp extends HookConsumerWidget {
         Locale('jp'),
       ],
       theme: ThemeData(
-          backgroundColor: MyColors.background,
-          primaryColor: MyColors.cardBackground,
           fontFamily: 'Hiragino Kaku Gothic ProN'),
       home: const Home(),
     );
