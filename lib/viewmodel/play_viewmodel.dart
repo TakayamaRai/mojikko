@@ -75,13 +75,13 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
   onPressKeyboard(String word) {
     if(word == ' ') return;
     final newQuestions = List.of(state.questions);
-    newQuestions[state.questionIndex].replaceAll(' ', '');
+    newQuestions[state.questionIndex] = newQuestions[state.questionIndex].replaceAll(' ', '');
     if(newQuestions[state.questionIndex].length == 5){
       newQuestions[state.questionIndex] = newQuestions[state.questionIndex].replaceRange(4,null, word);
     }else{
-      newQuestions[state.questionIndex] = newQuestions[state.questionIndex]+word;
+      newQuestions[state.questionIndex] += word;
+      newQuestions[state.questionIndex] = newQuestions[state.questionIndex].padRight(5,);
     }
-
     state = state.copyWith(questions: newQuestions);
   }
 
