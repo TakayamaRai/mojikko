@@ -14,75 +14,103 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
     return const PlayData();
   }
   void validatorInputAnswer(){
-    var questions = state.questions[state.questionIndex];
-    if(questions.length != 5){
+    var question = state.questions[state.questionIndex];
+    if(question.length != 5){
       state = state.copyWith(errorTextOfInputAnswer: '5文字を入力してください');
       return;
     }
-    if(RegExp(r'^[ぁ-んァ-ン]+$').hasMatch(questions)){
+    if(!RegExp(r'^[ぁ-んァ-ン]+$').hasMatch(question)){
       state = state.copyWith(errorTextOfInputAnswer: 'ひらがなまたはカタカナのみで入力してください');
       return;
     }
-    if(RegExp(r'[ァ-ン]+$').hasMatch(questions)){
-      questions = questions.replaceAllMapped(RegExp('[ァ-ン]'),
+    if(RegExp(r'[ァ-ン]+$').hasMatch(question)){
+      question = question.replaceAllMapped(RegExp('[ァ-ン]'),
               (Match m) => String.fromCharCode(m.group(0)!.codeUnitAt(0) - 0x60));
     }
     state = state.copyWith(errorTextOfInputAnswer: '');
   }
 
-  updateWordStatus(PlayAnswer playAnswer){
-    var status = WordStatus.none;
-    var indexAnswer = 0;
-    var word = "";
+  Map<String,WordStatus>compareWordStatus({required PlayAnswer playAnswer, required String question}){
+    WordStatus status = WordStatus.none;
+    int indexAnswer = 0;
+    Map<String,WordStatus> newWordsStatus ={};
 
-    final words = state.questions[state.questionIndex].split('');
-    for (int indexQuestions=0; indexQuestions<words.length; indexQuestions++) {
-      word = words[indexQuestions];
-      // 文字も場所も合ってる場合はスルー
-      if(state.wordsStatus[word] == WordStatus.exactPosition) return;
-
+    final words = question.split('');
+    for (int i=0; i<words.length; i++) {
       status = WordStatus.none;
-      indexAnswer = playAnswer.answer.indexOf(word);
+      indexAnswer = playAnswer.answer.indexOf(words[i]);
       //文字が存在して合っているか
-      if(indexAnswer == indexQuestions){
+      if(indexAnswer == i){
         status = WordStatus.exactPosition;
       }else if(indexAnswer != -1){
         status = WordStatus.existWord;
       }
-      final newWordsStatus = state.wordsStatus;
-      newWordsStatus[word] = status;
-      state = state.copyWith(wordsStatus: newWordsStatus, questionIndex: state.questionIndex+1);
+      newWordsStatus.addAll({words[i]: status});
     }
+    return newWordsStatus;
+  }
+
+  updateWordStatus(Map<String, WordStatus> newWordsStatus) {
+    final tmpMap = Map.of(state.keyBoardStatus);
+    newWordsStatus.forEach((key, value) {
+      tmpMap[key]=value;
+    });
+    state = state.copyWith(keyBoardStatus: tmpMap);
+  }
+
+  updateQuestionsStatus(Map<String, WordStatus> newWordsStatus) {
+    final tmpList = List.of(state.questionsStatus);
+    tmpList[state.questionIndex] = newWordsStatus;
+    state = state.copyWith(questionsStatus: tmpList);
+  }
+
+  updateQuestionIndex(){
+    state = state.copyWith(questionIndex: state.questionIndex+1);
   }
 
   onPressDelete() {
-    final newQuestions = List.of(state.questions);
-    newQuestions[state.questionIndex] = "";
-    state = state.copyWith(questions: newQuestions);
+    final newQuestions = List.of(state.questionsStatus);
+    newQuestions[state.questionIndex] = {"":WordStatus.empty};
+    state = state.copyWith(questionsStatus: newQuestions);
   }
 
   bool onPressEnter({required PlayAnswer playAnswer}) {
     validatorInputAnswer();
     if(state.errorTextOfInputAnswer.isNotEmpty) return false;
-    updateWordStatus(playAnswer);
+    final newWordsStatus = compareWordStatus(
+        playAnswer: playAnswer,
+        question: state.questions[state.questionIndex]);
+    updateWordStatus(newWordsStatus);
+    updateQuestionsStatus(newWordsStatus);
+    updateQuestionIndex();
     return containAnswer(playAnswer);
   }
 
   bool containAnswer(PlayAnswer playAnswer) {
-    return (playAnswer.answer == state.questions[state.questionIndex]);
+    return (playAnswer.answer == state.questions[state.questionIndex-1]);
   }
 
   onPressKeyboard(String word) {
     if(word == ' ') return;
-    final newQuestions = List.of(state.questions);
-    newQuestions[state.questionIndex] = newQuestions[state.questionIndex].replaceAll(' ', '');
-    if(newQuestions[state.questionIndex].length == 5){
-      newQuestions[state.questionIndex] = newQuestions[state.questionIndex].replaceRange(4,null, word);
-    }else{
-      newQuestions[state.questionIndex] += word;
-      newQuestions[state.questionIndex] = newQuestions[state.questionIndex].padRight(5,);
+    final newQuestions = List.of(state.questionsStatus);
+    // 初回のみ
+    if(newQuestions.isEmpty) {
+      newQuestions.addAll([{word: WordStatus.empty}]);
+      state = state.copyWith(questionsStatus: newQuestions);
+      return;
     }
-    state = state.copyWith(questions: newQuestions);
+    if(newQuestions.length <= state.questionIndex) {
+      newQuestions.addAll([{word: WordStatus.empty}]);
+      state = state.copyWith(questionsStatus: newQuestions);
+      return;
+    }
+
+    final Map<String, WordStatus> thisQuestion = newQuestions[state.questionIndex];
+    if(thisQuestion.length == 5){
+      thisQuestion.remove(thisQuestion.keys.last);
+    }
+    newQuestions[state.questionIndex].addAll({word:WordStatus.empty});
+    state = state.copyWith(questionsStatus: newQuestions);
   }
 
 }

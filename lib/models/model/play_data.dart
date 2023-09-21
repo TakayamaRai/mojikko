@@ -1,13 +1,15 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mojikko/data/constants.dart';
 import 'package:mojikko/data/enum.dart';
 
 part 'play_data.freezed.dart';
 
 @freezed
 class PlayData with _$PlayData {
+  const PlayData._();
   const factory PlayData({
-    @Default(['','','','','','','','','','']) List<String> questions,
+    @Default([]) List<Map<String,WordStatus>> questionsStatus,
     @Default(0) int questionIndex,
     @Default('') String errorTextOfInputAnswer,
     @Default({
@@ -28,7 +30,15 @@ class PlayData with _$PlayData {
       'ば':WordStatus.empty,'び':WordStatus.empty,'ぶ':WordStatus.empty,'べ':WordStatus.empty,'ぼ':WordStatus.empty,
       'ぱ':WordStatus.empty,'ぴ':WordStatus.empty,'ぷ':WordStatus.empty,'ぺ':WordStatus.empty,'ぽ':WordStatus.empty,
       'ゃ':WordStatus.empty,'ゅ':WordStatus.empty,'ょ':WordStatus.empty,'っ':WordStatus.empty,'ー':WordStatus.empty,
-    }) Map<String,WordStatus> wordsStatus,
+    }) Map<String,WordStatus> keyBoardStatus,
   }) = _PlayData;
 
+  List<String> get questions {
+    final List<String> list = List.filled(answerLimit, '');
+    if(questionsStatus.isEmpty) return list;
+    for(int i=0; i<answerLimit; i++){
+      if(i<questionsStatus.length) list[i] = questionsStatus[i].keys.join('');
+    }
+    return list;
+  }
 }

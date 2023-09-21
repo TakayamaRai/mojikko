@@ -16,7 +16,6 @@ class WordTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final status = wordsStatus[word] ?? WordStatus.empty;
     if(word ==' ') {
       return Container(
         height: width,
@@ -34,17 +33,17 @@ class WordTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            offset: Offset(2, 2),
+            offset: const Offset(2, 2),
             color: Colors.grey.withOpacity(0.6),
             blurRadius: 5.0,
           ),
           BoxShadow(
-            color: status.backgroundColor,
+            color: wordsStatus[word]!.backgroundColor,
             spreadRadius: -0.01,
           ),
         ],
       ),
-      child: Center(child: MyText.p12normal(text: word,color: status.textColor)),
+      child: Center(child: MyText.p12normal(text: word,color: wordsStatus[word]!.textColor)),
     );
   }
 }

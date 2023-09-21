@@ -16,10 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PlayData {
-  List<String> get questions => throw _privateConstructorUsedError;
+  List<Map<String, WordStatus>> get questionsStatus =>
+      throw _privateConstructorUsedError;
   int get questionIndex => throw _privateConstructorUsedError;
   String get errorTextOfInputAnswer => throw _privateConstructorUsedError;
-  Map<String, WordStatus> get wordsStatus => throw _privateConstructorUsedError;
+  Map<String, WordStatus> get keyBoardStatus =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayDataCopyWith<PlayData> get copyWith =>
@@ -32,10 +34,10 @@ abstract class $PlayDataCopyWith<$Res> {
       _$PlayDataCopyWithImpl<$Res, PlayData>;
   @useResult
   $Res call(
-      {List<String> questions,
+      {List<Map<String, WordStatus>> questionsStatus,
       int questionIndex,
       String errorTextOfInputAnswer,
-      Map<String, WordStatus> wordsStatus});
+      Map<String, WordStatus> keyBoardStatus});
 }
 
 /// @nodoc
@@ -51,16 +53,16 @@ class _$PlayDataCopyWithImpl<$Res, $Val extends PlayData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questions = null,
+    Object? questionsStatus = null,
     Object? questionIndex = null,
     Object? errorTextOfInputAnswer = null,
-    Object? wordsStatus = null,
+    Object? keyBoardStatus = null,
   }) {
     return _then(_value.copyWith(
-      questions: null == questions
-          ? _value.questions
-          : questions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      questionsStatus: null == questionsStatus
+          ? _value.questionsStatus
+          : questionsStatus // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, WordStatus>>,
       questionIndex: null == questionIndex
           ? _value.questionIndex
           : questionIndex // ignore: cast_nullable_to_non_nullable
@@ -69,9 +71,9 @@ class _$PlayDataCopyWithImpl<$Res, $Val extends PlayData>
           ? _value.errorTextOfInputAnswer
           : errorTextOfInputAnswer // ignore: cast_nullable_to_non_nullable
               as String,
-      wordsStatus: null == wordsStatus
-          ? _value.wordsStatus
-          : wordsStatus // ignore: cast_nullable_to_non_nullable
+      keyBoardStatus: null == keyBoardStatus
+          ? _value.keyBoardStatus
+          : keyBoardStatus // ignore: cast_nullable_to_non_nullable
               as Map<String, WordStatus>,
     ) as $Val);
   }
@@ -85,10 +87,10 @@ abstract class _$$_PlayDataCopyWith<$Res> implements $PlayDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<String> questions,
+      {List<Map<String, WordStatus>> questionsStatus,
       int questionIndex,
       String errorTextOfInputAnswer,
-      Map<String, WordStatus> wordsStatus});
+      Map<String, WordStatus> keyBoardStatus});
 }
 
 /// @nodoc
@@ -102,16 +104,16 @@ class __$$_PlayDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questions = null,
+    Object? questionsStatus = null,
     Object? questionIndex = null,
     Object? errorTextOfInputAnswer = null,
-    Object? wordsStatus = null,
+    Object? keyBoardStatus = null,
   }) {
     return _then(_$_PlayData(
-      questions: null == questions
-          ? _value._questions
-          : questions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      questionsStatus: null == questionsStatus
+          ? _value._questionsStatus
+          : questionsStatus // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, WordStatus>>,
       questionIndex: null == questionIndex
           ? _value.questionIndex
           : questionIndex // ignore: cast_nullable_to_non_nullable
@@ -120,9 +122,9 @@ class __$$_PlayDataCopyWithImpl<$Res>
           ? _value.errorTextOfInputAnswer
           : errorTextOfInputAnswer // ignore: cast_nullable_to_non_nullable
               as String,
-      wordsStatus: null == wordsStatus
-          ? _value._wordsStatus
-          : wordsStatus // ignore: cast_nullable_to_non_nullable
+      keyBoardStatus: null == keyBoardStatus
+          ? _value._keyBoardStatus
+          : keyBoardStatus // ignore: cast_nullable_to_non_nullable
               as Map<String, WordStatus>,
     ));
   }
@@ -130,23 +132,12 @@ class __$$_PlayDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PlayData implements _PlayData {
+class _$_PlayData extends _PlayData {
   const _$_PlayData(
-      {final List<String> questions = const [
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        ''
-      ],
+      {final List<Map<String, WordStatus>> questionsStatus = const [],
       this.questionIndex = 0,
       this.errorTextOfInputAnswer = '',
-      final Map<String, WordStatus> wordsStatus = const {
+      final Map<String, WordStatus> keyBoardStatus = const {
         'あ': WordStatus.empty,
         'い': WordStatus.empty,
         'う': WordStatus.empty,
@@ -229,16 +220,17 @@ class _$_PlayData implements _PlayData {
         'っ': WordStatus.empty,
         'ー': WordStatus.empty
       }})
-      : _questions = questions,
-        _wordsStatus = wordsStatus;
+      : _questionsStatus = questionsStatus,
+        _keyBoardStatus = keyBoardStatus,
+        super._();
 
-  final List<String> _questions;
+  final List<Map<String, WordStatus>> _questionsStatus;
   @override
   @JsonKey()
-  List<String> get questions {
-    if (_questions is EqualUnmodifiableListView) return _questions;
+  List<Map<String, WordStatus>> get questionsStatus {
+    if (_questionsStatus is EqualUnmodifiableListView) return _questionsStatus;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_questions);
+    return EqualUnmodifiableListView(_questionsStatus);
   }
 
   @override
@@ -247,18 +239,18 @@ class _$_PlayData implements _PlayData {
   @override
   @JsonKey()
   final String errorTextOfInputAnswer;
-  final Map<String, WordStatus> _wordsStatus;
+  final Map<String, WordStatus> _keyBoardStatus;
   @override
   @JsonKey()
-  Map<String, WordStatus> get wordsStatus {
-    if (_wordsStatus is EqualUnmodifiableMapView) return _wordsStatus;
+  Map<String, WordStatus> get keyBoardStatus {
+    if (_keyBoardStatus is EqualUnmodifiableMapView) return _keyBoardStatus;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_wordsStatus);
+    return EqualUnmodifiableMapView(_keyBoardStatus);
   }
 
   @override
   String toString() {
-    return 'PlayData(questions: $questions, questionIndex: $questionIndex, errorTextOfInputAnswer: $errorTextOfInputAnswer, wordsStatus: $wordsStatus)';
+    return 'PlayData(questionsStatus: $questionsStatus, questionIndex: $questionIndex, errorTextOfInputAnswer: $errorTextOfInputAnswer, keyBoardStatus: $keyBoardStatus)';
   }
 
   @override
@@ -267,22 +259,22 @@ class _$_PlayData implements _PlayData {
         (other.runtimeType == runtimeType &&
             other is _$_PlayData &&
             const DeepCollectionEquality()
-                .equals(other._questions, _questions) &&
+                .equals(other._questionsStatus, _questionsStatus) &&
             (identical(other.questionIndex, questionIndex) ||
                 other.questionIndex == questionIndex) &&
             (identical(other.errorTextOfInputAnswer, errorTextOfInputAnswer) ||
                 other.errorTextOfInputAnswer == errorTextOfInputAnswer) &&
             const DeepCollectionEquality()
-                .equals(other._wordsStatus, _wordsStatus));
+                .equals(other._keyBoardStatus, _keyBoardStatus));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_questions),
+      const DeepCollectionEquality().hash(_questionsStatus),
       questionIndex,
       errorTextOfInputAnswer,
-      const DeepCollectionEquality().hash(_wordsStatus));
+      const DeepCollectionEquality().hash(_keyBoardStatus));
 
   @JsonKey(ignore: true)
   @override
@@ -291,21 +283,22 @@ class _$_PlayData implements _PlayData {
       __$$_PlayDataCopyWithImpl<_$_PlayData>(this, _$identity);
 }
 
-abstract class _PlayData implements PlayData {
+abstract class _PlayData extends PlayData {
   const factory _PlayData(
-      {final List<String> questions,
+      {final List<Map<String, WordStatus>> questionsStatus,
       final int questionIndex,
       final String errorTextOfInputAnswer,
-      final Map<String, WordStatus> wordsStatus}) = _$_PlayData;
+      final Map<String, WordStatus> keyBoardStatus}) = _$_PlayData;
+  const _PlayData._() : super._();
 
   @override
-  List<String> get questions;
+  List<Map<String, WordStatus>> get questionsStatus;
   @override
   int get questionIndex;
   @override
   String get errorTextOfInputAnswer;
   @override
-  Map<String, WordStatus> get wordsStatus;
+  Map<String, WordStatus> get keyBoardStatus;
   @override
   @JsonKey(ignore: true)
   _$$_PlayDataCopyWith<_$_PlayData> get copyWith =>

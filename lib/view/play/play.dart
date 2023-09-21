@@ -22,10 +22,11 @@ class PlayPage extends ConsumerWidget {
     return MyScrollView(
       child: Column(
         children: [
-          QuestionsPanel(playData: playData,),
+          QuestionsPanel(playData: playData,questionsStatus: playData.questionsStatus),
           const SizedBox(height: 10,),
           InputField(
               question: playData.questions[playData.questionIndex],
+              errorText: playData.errorTextOfInputAnswer,
               onPressDelete: ()=> stateNotifier.onPressDelete(),
               onPressEnter: (){
                 final result = stateNotifier.onPressEnter(playAnswer: playAnswer);
@@ -37,7 +38,7 @@ class PlayPage extends ConsumerWidget {
               }),
           const SizedBox(height: 15,),
           AnswerKeyboard(
-            wordsStatus: playData.wordsStatus,
+            wordsStatus: playData.keyBoardStatus,
             onPressKeyboard: (word)=> stateNotifier.onPressKeyboard(word),
           ),
         ],

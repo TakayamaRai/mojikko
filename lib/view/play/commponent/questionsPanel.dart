@@ -6,8 +6,9 @@ import 'package:mojikko/view/component/text.dart';
 import 'package:mojikko/view/play/commponent/word_tile.dart';
 
 class QuestionsPanel extends StatelessWidget {
-  const QuestionsPanel({super.key, required this.playData});
+  const QuestionsPanel({super.key, required this.playData, required this.questionsStatus});
   final PlayData playData;
+  final List<Map<String,WordStatus>> questionsStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -20,28 +21,42 @@ class QuestionsPanel extends StatelessWidget {
     );
   }
 
-  Widget _questionTiles({required BuildContext context,required int start,required int end}) {
+  Widget _questionTiles({
+    required BuildContext context,
+    required int start,
+    required int end,}) {
     final List<Widget> tiles = [];
     for(int i=start; i<end; i++){
-      tiles.add(_questionTile(context: context, question: playData.questions[i]));
+      final Map<String,WordStatus> questionStatus = (i < questionsStatus.length) ?questionsStatus[i] : {};
+      tiles.add(_questionTile(context: context, questionStatus: questionStatus));
       tiles.add(const SizedBox(height: 3,));
     }
     return Column(children: tiles,);
   }
 
-  Widget _questionTile({required BuildContext context,required String question}) {
-    if(question == ''){
-      question = '     ';
-    }
-    final words = question.split('');
+  Widget _questionTile({
+    required BuildContext context,
+    required Map<String,WordStatus> questionStatus}) {
+
     final List<Widget> tiles = [];
-    for (var word in words) {
+    questionStatus.forEach((word, status) {
       tiles.add(
           WordTile(
               width: (MediaQuery.of(context).size.width -80)/10,
-              wordsStatus: playData.wordsStatus,word: word));
+              wordsStatus: questionStatus,
+              word: word));
+      tiles.add(const SizedBox(width: 3,));
+    });
+    // 空白埋め
+    for(int i=0; i<5-questionStatus.length; i++){
+      tiles.add(
+          WordTile(
+              width: (MediaQuery.of(context).size.width -80)/10,
+              wordsStatus: questionStatus,
+              word: ' '));
       tiles.add(const SizedBox(width: 3,));
     }
+
     return Row(children: tiles,);
   }
 }
