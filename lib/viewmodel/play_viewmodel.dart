@@ -94,23 +94,26 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
     if(word == ' ') return;
     final newQuestions = List.of(state.questionsStatus);
     // 初回のみ
-    if(newQuestions.isEmpty) {
-      newQuestions.addAll([{word: WordStatus.empty}]);
-      state = state.copyWith(questionsStatus: newQuestions);
-      return;
-    }
     if(newQuestions.length <= state.questionIndex) {
       newQuestions.addAll([{word: WordStatus.empty}]);
       state = state.copyWith(questionsStatus: newQuestions);
       return;
     }
-
+    // 同じ文字は入れれない
+    if(newQuestions[state.questionIndex].containsKey(word)){
+      state = state.copyWith(errorTextOfInputAnswer: '『$word』は既に使用されています');
+      return;
+    }
+    // 5文字目は最後の文字を消去
     final Map<String, WordStatus> thisQuestion = newQuestions[state.questionIndex];
     if(thisQuestion.length == 5){
       thisQuestion.remove(thisQuestion.keys.last);
     }
     newQuestions[state.questionIndex].addAll({word:WordStatus.empty});
     state = state.copyWith(questionsStatus: newQuestions);
+    if(state.errorTextOfInputAnswer.isNotEmpty){
+      state = state.copyWith(errorTextOfInputAnswer: '');
+    }
   }
 
 }
