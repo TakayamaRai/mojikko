@@ -50,9 +50,10 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
     return newWordsStatus;
   }
 
-  updateWordStatus(Map<String, WordStatus> newWordsStatus) {
+  updateKeyBoardStatus(Map<String, WordStatus> newWordsStatus) {
     final tmpMap = Map.of(state.keyBoardStatus);
     newWordsStatus.forEach((key, value) {
+      if(tmpMap[key] == WordStatus.exactPosition) return;
       tmpMap[key]=value;
     });
     state = state.copyWith(keyBoardStatus: tmpMap);
@@ -70,7 +71,7 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
 
   onPressDelete() {
     final newQuestions = List.of(state.questionsStatus);
-    newQuestions[state.questionIndex] = {"":WordStatus.empty};
+    newQuestions[state.questionIndex] = {};
     state = state.copyWith(questionsStatus: newQuestions);
   }
 
@@ -80,7 +81,7 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
     final newWordsStatus = compareWordStatus(
         playAnswer: playAnswer,
         question: state.questions[state.questionIndex]);
-    updateWordStatus(newWordsStatus);
+    updateKeyBoardStatus(newWordsStatus);
     updateQuestionsStatus(newWordsStatus);
     updateQuestionIndex();
     return containAnswer(playAnswer);
