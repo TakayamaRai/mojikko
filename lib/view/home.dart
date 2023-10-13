@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mojikko/data/color.dart';
 import 'package:mojikko/data/dictionary.dart';
 import 'package:mojikko/models/local/shared_preferences.dart';
-import 'package:mojikko/models/model/play_data.dart';
 import 'package:mojikko/models/model/play_answer.dart';
 import 'package:mojikko/view/component/button.dart';
 import 'package:mojikko/view/component/scroll_view.dart';
 import 'package:mojikko/view/component/text.dart';
 import 'package:mojikko/view/play/play.dart';
+import 'package:mojikko/viewmodel/home_viewmodel.dart';
 
 
 class Home extends HookConsumerWidget {
@@ -16,22 +17,37 @@ class Home extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final answerChildIndex = SharedPreferencesUtil.getInt(SPKeys.childAnswer);
-    final answerGeneralIndex = SharedPreferencesUtil.getInt(SPKeys.generalAnswer);
+    final stateNotifier = ref.watch(homeViewModelProvider.notifier);
+    final answerIndex = ref.watch(homeViewModelProvider);
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        stateNotifier.setIndex();
+      });
+      return;
+      },
+      const [],
+    );
+
     return MyScrollView(
       child: Column(
         children: [
           MyText.p12bold(text: "子供向け"),
           ColorButton(
               backgroundColor: MyColors.primary,
-              onPressed: ()=> _onPressChild(context,answerChildIndex),
-              child: MyText.p12normal(text: "${answerChildIndex + 1}/50",color: MyColors.white)),
+              onPressed: (){
+                _onPressChild(context,answerIndex.childIndex);
+                stateNotifier.incrementChildIndex();
+              },
+              child: MyText.p12normal(text: "${answerIndex.childIndex + 1}/50",color: MyColors.white)),
           const SizedBox(height: 30,),
           MyText.p12bold(text: "一般向け"),
           ColorButton(
               backgroundColor: MyColors.primary,
-              onPressed: ()=> _onPressGeneral(context,answerGeneralIndex),
-              child: MyText.p12normal(text: "${answerGeneralIndex + 1}/50",color: MyColors.white)
+              onPressed: () {
+                _onPressGeneral(context,answerIndex.generalIndex);
+                stateNotifier.incrementGeneralIndex();
+              },
+              child: MyText.p12normal(text: "${answerIndex.generalIndex + 1}/50",color: MyColors.white)
           ),
         ],
       ),
@@ -50,8 +66,8 @@ class Home extends HookConsumerWidget {
 
   _onPressGeneral(BuildContext context, int i) {
     final playAnswer = PlayAnswer(
-      answer: Dictionary.childAnswers.keys.elementAt(i),
-      answersKanji: Dictionary.childAnswers.values.elementAt(i),);
+      answer: Dictionary.generalAnswers.keys.elementAt(i),
+      answersKanji: Dictionary.generalAnswers.values.elementAt(i),);
     Navigator.of(context).push(
         MaterialPageRoute<void>(builder: (_) =>
             PlayPage(playAnswer: playAnswer)),);

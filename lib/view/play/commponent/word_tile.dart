@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mojikko/data/color.dart';
 import 'package:mojikko/data/enum.dart';
 import 'package:mojikko/view/component/text.dart';
 

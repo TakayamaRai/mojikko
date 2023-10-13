@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mojikko/data/color.dart';
 import 'package:mojikko/view/home.dart';
 
 import 'models/local/shared_preferences.dart';

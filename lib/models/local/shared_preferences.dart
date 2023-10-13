@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SPKeys {
@@ -12,7 +13,7 @@ class SharedPreferencesUtil {
     try{
       prefs = await SharedPreferences.getInstance();
     }catch(e){
-      print('instanceSharedPreferenceErr : $e');
+      debugPrint('instanceSharedPreferenceErr : $e');
     }
   }
 

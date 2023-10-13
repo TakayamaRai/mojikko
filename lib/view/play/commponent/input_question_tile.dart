@@ -35,7 +35,7 @@ class InputQuestionTile extends StatelessWidget {
               ),
               boxShadow: [
                 BoxShadow(
-                  offset: Offset(2, 2),
+                  offset: const Offset(2, 2),
                   color: Colors.grey.withOpacity(0.6),
                   blurRadius: 5.0,
                 ),

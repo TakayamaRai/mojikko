@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mojikko/data/color.dart';
 import 'package:mojikko/data/enum.dart';
 import 'package:mojikko/models/model/play_data.dart';
-import 'package:mojikko/view/component/text.dart';
 import 'package:mojikko/view/play/commponent/word_tile.dart';
 
 class QuestionsPanel extends StatelessWidget {

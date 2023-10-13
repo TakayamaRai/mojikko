@@ -19,7 +19,7 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
       state = state.copyWith(errorTextOfInputAnswer: '5文字を入力してください');
       return;
     }
-    if(!RegExp(r'^[ぁ-んァ-ン]+$').hasMatch(question)){
+    if(!RegExp(r'^[ぁ-んァ-ンー]+$').hasMatch(question)){
       state = state.copyWith(errorTextOfInputAnswer: 'ひらがなまたはカタカナのみで入力してください');
       return;
     }
