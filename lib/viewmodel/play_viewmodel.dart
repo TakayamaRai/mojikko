@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mojikko/data/enum.dart';
 import 'package:mojikko/models/model/play_answer.dart';
 import 'package:mojikko/models/model/play_data.dart';
+import 'package:mojikko/data/dictionary.dart';
 
 final playViewModelProvider = AutoDisposeNotifierProvider<PlayViewModel, PlayData>(
   PlayViewModel.new,
@@ -15,17 +16,21 @@ class PlayViewModel extends AutoDisposeNotifier<PlayData> {
   }
   void validatorInputAnswer(){
     var question = state.questions[state.questionIndex];
+    //文字数を確認
     if(question.length != 5){
       state = state.copyWith(errorTextOfInputAnswer: '5文字を入力してください');
       return;
     }
+    //ひらがなを確認
     if(!RegExp(r'^[ぁ-んァ-ンー]+$').hasMatch(question)){
       state = state.copyWith(errorTextOfInputAnswer: 'ひらがなまたはカタカナのみで入力してください');
       return;
     }
-    if(RegExp(r'[ァ-ン]+$').hasMatch(question)){
-      question = question.replaceAllMapped(RegExp('[ァ-ン]'),
-              (Match m) => String.fromCharCode(m.group(0)!.codeUnitAt(0) - 0x60));
+    //辞書に登録されている言葉かを確認
+    final result = Dictionary.questions.contains(question);
+    if(!result){
+      state = state.copyWith(errorTextOfInputAnswer: '辞書にない言葉です');
+      return;
     }
     state = state.copyWith(errorTextOfInputAnswer: '');
   }
