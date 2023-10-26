@@ -5,6 +5,7 @@ import 'package:mojikko/models/model/play_answer.dart';
 import 'package:mojikko/view/component/dialog.dart';
 import 'package:mojikko/view/component/scroll_view.dart';
 import 'package:mojikko/view/play/commponent/AnswerKeyboard.dart';
+import 'package:mojikko/view/play/commponent/examplePanel.dart';
 import 'package:mojikko/view/play/commponent/input_field.dart';
 import 'package:mojikko/view/play/commponent/questionsPanel.dart';
 import 'package:mojikko/viewmodel/play_viewmodel.dart';
@@ -25,6 +26,8 @@ class PlayPage extends ConsumerWidget {
     return MyScrollView(
       child: Column(
         children: [
+          const ExamplePanel(),
+          const SizedBox(height: 20,),
           QuestionsPanel(playData: playData,questionsStatus: playData.questionsStatus),
           const SizedBox(height: 10,),
           InputField(

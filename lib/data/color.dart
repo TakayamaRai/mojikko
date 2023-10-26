@@ -7,6 +7,6 @@ class MyColors{
   static const Color primary = Color(0xff1fa9f5);
   static const Color exactPosition = Color(0xffd66e62);
   static const Color existWord = Color(0xff28b5ad);
-  static const Color none = Color(0xff7576b3);
+  static const Color none = Color(0xff6c6c6c);
   static const Color error = Color(0xFFDE0311);
 }
