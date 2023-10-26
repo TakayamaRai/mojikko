@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mojikko/data/enum.dart';
-import 'package:mojikko/view/play/commponent/word_tile.dart';
+import 'package:mojikko/view/play/component/word_tile.dart';
 
 class AnswerKeyboard extends StatelessWidget {
   AnswerKeyboard({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mojikko/data/enum.dart';
 import 'package:mojikko/models/model/play_data.dart';
-import 'package:mojikko/view/play/commponent/word_tile.dart';
+import 'package:mojikko/view/play/component/word_tile.dart';
 
 class QuestionsPanel extends StatelessWidget {
   const QuestionsPanel({super.key, required this.playData, required this.questionsStatus});

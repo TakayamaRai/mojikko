@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mojikko/data/enum.dart';
 import 'package:mojikko/view/component/text.dart';
-import 'package:mojikko/view/play/commponent/word_tile.dart';
+import 'package:mojikko/view/play/component/word_tile.dart';
 
 class ExamplePanel extends StatelessWidget {
   const ExamplePanel({Key? key}) : super(key: key);

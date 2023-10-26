@@ -2,15 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mojikko/models/model/play_answer.dart';
+import 'package:mojikko/models/model/play_data.dart';
 import 'package:mojikko/view/component/dialog.dart';
 import 'package:mojikko/view/component/scroll_view.dart';
-import 'package:mojikko/view/play/commponent/AnswerKeyboard.dart';
-import 'package:mojikko/view/play/commponent/examplePanel.dart';
-import 'package:mojikko/view/play/commponent/input_field.dart';
-import 'package:mojikko/view/play/commponent/questionsPanel.dart';
+import 'package:mojikko/view/play/component/AnswerKeyboard.dart';
+import 'package:mojikko/view/play/component/examplePanel.dart';
+import 'package:mojikko/view/play/component/input_field.dart';
+import 'package:mojikko/view/play/component/questionsPanel.dart';
 import 'package:mojikko/viewmodel/play_viewmodel.dart';
-
-import '../../models/model/play_data.dart';
 
 class PlayPage extends ConsumerWidget {
   const PlayPage({super.key, required this.playAnswer});

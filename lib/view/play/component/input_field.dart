@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mojikko/data/color.dart';
 import 'package:mojikko/view/component/button.dart';
 import 'package:mojikko/view/component/text.dart';
-import 'package:mojikko/view/play/commponent/input_question_tile.dart';
+import 'package:mojikko/view/play/component/input_question_tile.dart';
 
 class InputField extends StatelessWidget {
   const InputField({
