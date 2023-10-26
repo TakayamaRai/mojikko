@@ -22,24 +22,27 @@ class PlayPage extends ConsumerWidget {
     final stateNotifier = ref.watch(playViewModelProvider.notifier);
     final playData = ref.watch(playViewModelProvider);
 
-    return MyScrollView(
-      child: Column(
-        children: [
-          const ExamplePanel(),
-          const SizedBox(height: 20,),
-          QuestionsPanel(playData: playData,questionsStatus: playData.questionsStatus),
-          const SizedBox(height: 10,),
-          InputField(
-              question: playData.questions[playData.questionIndex],
-              errorText: playData.errorTextOfInputAnswer,
-              onPressDelete: ()=> stateNotifier.onPressDelete(),
-              onPressEnter: ()async => _onPressEnter(context: context,stateNotifier: stateNotifier,playData: playData)),
-          const SizedBox(height: 15,),
-          AnswerKeyboard(
-            wordsStatus: playData.keyBoardStatus,
-            onPressKeyboard: (word)=> stateNotifier.onPressKeyboard(word),
-          ),
-        ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: MyScrollView(
+        child: Column(
+          children: [
+            const ExamplePanel(),
+            const SizedBox(height: 20,),
+            QuestionsPanel(playData: playData,questionsStatus: playData.questionsStatus),
+            const SizedBox(height: 10,),
+            InputField(
+                question: playData.questions[playData.questionIndex],
+                errorText: playData.errorTextOfInputAnswer,
+                onPressDelete: ()=> stateNotifier.onPressDelete(),
+                onPressEnter: ()async => _onPressEnter(context: context,stateNotifier: stateNotifier,playData: playData)),
+            const SizedBox(height: 15,),
+            AnswerKeyboard(
+              wordsStatus: playData.keyBoardStatus,
+              onPressKeyboard: (word)=> stateNotifier.onPressKeyboard(word),
+            ),
+          ],
+        ),
       ),
     );
   }
